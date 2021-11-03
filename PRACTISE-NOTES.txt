@@ -1,0 +1,33 @@
+growpart /dev/xvda 1
+
+xfs_growfs -d /
+
+rsync --aHAXxSP Source Destination
+
+
+Lecture 32 IMROLE
+
+Certificate DOCKER
+
+openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt
+repo.docker.local
+cd /etc/docker
+mkdir certs.d
+cd certs.d
+mkdir repo.docker.local:5000
+cd certs
+cp domain.crt /etc/docker/certs.d/repo.docker.local\:5000/ca.crt
+systemctl restart docker
+
+d3docker container run -d -p 5000:5000 --name secure_registery -v $(pwd)/certs/:/certs -e REGISTERY_HTTP_TLS_CERTIFICATE=/certs/domain.crt -e REGISTERY_HTTP_TLS_KEY=/certs/domain.key registry
+
+Jenkins
+Ansible
+Build-Tool
+Python Scripting
+============
+Docker
+Jira
+AWS Cloud
+L3 Support
+Communication
